@@ -27,11 +27,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   CanvasTextWrapper(canvas as any, title, {
     font: '64px ZenMaruGothic',
     lineBreak: 'all',
-    paddingX: 120,
-    paddingY: 60,
-    strokeText: true,
+    paddingX: 100,
+    paddingY: 10,
+    lineHeight: 1.5,
   })
-  //ctx.fillText(title, 100, 150)
+
+  res.setHeader('Content-Type', 'image/png')
+  res.setHeader(
+    'Cache-Control',
+    `public, immutable, no-transform, s-maxage=31536000, max-age=31536000`
+  )
   return res.status(200).end(canvas.toBuffer('image/png'))
 }
 
