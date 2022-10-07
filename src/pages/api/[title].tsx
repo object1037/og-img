@@ -7,7 +7,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   if (!title || typeof title !== 'string') {
     return res.status(400).end('Bad Request')
   }
-  registerFont(path.resolve('./public/ZenMaruGothic.woff'), {
+  registerFont(path.resolve('./public/ZenMaruGothic.ttf'), {
     family: 'ZenMaruGothic',
   })
   const canvas = createCanvas(1200, 600)
