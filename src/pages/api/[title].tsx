@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { createCanvas, GlobalFonts, Image } from '@napi-rs/canvas'
 import path from 'path'
 import { promises } from 'fs'
+import { createCanvas, GlobalFonts, Image } from '@napi-rs/canvas'
+import { CanvasTextWrapper } from 'canvas-text-wrapper'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { title } = req.query
@@ -23,7 +24,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   ctx.font = '64px ZenMaruGothic'
   ctx.drawImage(image, 0, 0, 1200, 600)
-  ctx.fillText(title, 100, 150)
+  CanvasTextWrapper(canvas as any, title, {
+    font: '64px ZenMaruGothic',
+    lineBreak: 'all',
+    paddingX: 120,
+    paddingY: 60,
+    strokeText: true,
+  })
+  //ctx.fillText(title, 100, 150)
   return res.status(200).end(canvas.toBuffer('image/png'))
 }
 
