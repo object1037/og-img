@@ -6,11 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "vercel-build": "yum install libuuid-devel libmount-devel && cp /lib64/{libuuid,libmount,libblkid}.so.1 node_modules/canvas/build/Release/ && next build"
+    "lint": "next lint"
   },
   "dependencies": {
-    "canvas": "^2.10.1",
+    "@napi-rs/canvas": "^0.1.30",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
