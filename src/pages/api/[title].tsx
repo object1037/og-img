@@ -10,10 +10,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(400).end('Bad Request')
   }
 
-  GlobalFonts.registerFromPath(
-    path.resolve('./assets/ZenMaruGothic.woff2'),
-    'ZenMaruGothic'
-  )
+  if (!GlobalFonts.has('ZenMaruGothic')) {
+    GlobalFonts.registerFromPath(
+      path.resolve('./assets/ZenMaruGothic.woff2'),
+      'ZenMaruGothic'
+    )
+  }
 
   const imageBuffer = await promises.readFile(path.resolve('./assets/bg.png'))
   const image = new Image()
